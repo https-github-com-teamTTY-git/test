@@ -8,10 +8,10 @@ public class Lane : MonoBehaviour
     private float requiredTime = 30.0f;     // 長押しの基準値
 
     [SerializeField]
-    private int spinSpeed = 45;                  // レーンの回転速度
+    private int spinSpeed = 45;             // レーンの回転速度
 
     private float timeCnt;                  // 長押し時間の経過
-    private float framcnt;                  // フレーム
+    private float framCnt;                  // フレーム
     private bool oneActionFlag;             // 一度だけ回すとき
 
     public bool leftFlag;                   // 左入力中にtrue(矢印に使う)
@@ -20,42 +20,40 @@ public class Lane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeCnt = 0.0f;
+        framCnt = 0.0f;
+        oneActionFlag = true;
         leftFlag = false;
         rightFlag = false;
-        oneActionFlag = true;
-        timeCnt = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 左キー
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))        // 左キー
         {
             leftFlag = true;
 
             if(oneActionFlag)
             {
-                oneAct(spinSpeed);
+               oneAct(spinSpeed);
             }
 
-            framcnt++;
+            framCnt++;
             timeCnt++;
 
             longPush(spinSpeed);
         }
-
-        // 右キー
-        if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))  // 右キー
         {
             rightFlag = true;
 
             if (oneActionFlag)
             {
-                oneAct(-spinSpeed);
+               oneAct(-spinSpeed);
             }
 
-            framcnt++;
+            framCnt++;
             timeCnt++;
 
             longPush(-spinSpeed);
@@ -89,7 +87,7 @@ public class Lane : MonoBehaviour
             if (requiredTime < timeCnt)
             {
                 // 毎フレーム更新すると凄い速さで回転してしまうので調整
-                if (framcnt % (0.05 * 60) <= 0.1)
+                if (framCnt % (0.05 * 60) <= 0.1)
                 {
                     transform.Rotate(0, 0, speed);
                 }
@@ -99,7 +97,7 @@ public class Lane : MonoBehaviour
         // キーを離したときの共通初期化
         void KeyUpInit()
         {
-            framcnt = 0;
+            framCnt = 0;
             oneActionFlag = true;
             timeCnt = 0.0f;
         }
