@@ -65,19 +65,19 @@ public class Lane : MonoBehaviour
             //longPush(-spinSpeed);
         }
 
-        //// 左キーを離したときの処理
-        //if (Input.GetKeyUp(KeyCode.LeftArrow))
-        //{
-        //    leftFlag = false;
-        //    KeyUpInit();
-        //}
+        // 左キーを離したときの処理
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            leftFlag = false;
+            //KeyUpInit();
+        }
 
-        //// 右キーを離したときの処理
-        //if (Input.GetKeyUp(KeyCode.RightArrow))
-        //{
-        //    rightFlag = false;
-        //    KeyUpInit();
-        //}
+        // 右キーを離したときの処理
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            rightFlag = false;
+            //KeyUpInit();
+        }
 
         // 1回押しの時
         //void oneAct(int speed)
