@@ -15,6 +15,8 @@ public class GameScene : MonoBehaviour
         finishText = GetComponent<Text>();
 
         timerMng = GameObject.Find("TimerText").GetComponent<TimerMng>();
+
+
         // 数字で経過時間を決める
         Invoke("ChangeScene", 10.0f);
 
