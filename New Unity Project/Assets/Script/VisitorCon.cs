@@ -12,10 +12,11 @@ public class VisitorCon : MonoBehaviour
     private bool posxFlag;  // Z側に動かなくなった時true
     public bool updateFlag; // XとZ両方がtrueの時true
 
-
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(true);
+
         GameObject obj = GameObject.Find("Chair_2");
         chair = obj.GetComponent<Chair>();
 
@@ -25,26 +26,12 @@ public class VisitorCon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(this.gameObject.transform.position.x < chair.gameObject.transform.position.x)
-        //{
-        //    this.gameObject.transform.Translate(-0.05f, 0, 0);
-        //}
-        //if (this.gameObject.transform.position.x > chair.gameObject.transform.position.x)
-        //{
-        //    this.gameObject.transform.Translate(0.05f, 0, 0);
-        //}
-        //if (this.gameObject.transform.position.z < chair.gameObject.transform.position.z)
-        //{
-        //    this.gameObject.transform.Translate(0, 0, -0.05f);
-        //}
-        //if (this.gameObject.transform.position.z > chair.gameObject.transform.position.z)
-        //{
-        //    this.gameObject.transform.Translate(0, 0, 0.05f);
-        //}
-
         // 処理しなくなった時が目的地
-        MoveX();
-        MoveZ();
+        if (Enter())
+        {
+            MoveX();
+            MoveZ();
+        }
         Debug.Log(this.gameObject.transform.position);
 
         // 到着したらposFlagをtrueにする
@@ -56,7 +43,15 @@ public class VisitorCon : MonoBehaviour
         }
 
     }
-
+    bool Enter()
+    {
+        if(this.gameObject.transform.position.z <= 45)
+        {
+            return true;
+        }
+        this.gameObject.transform.Translate(0, 0, 0.05f);
+        return false;
+    }
     void MoveX()
     {
         if (!posxFlag)
