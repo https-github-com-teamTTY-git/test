@@ -9,6 +9,7 @@ public class TimerMng : MonoBehaviour
     float gameTime = 20.0f;        // ゲーム制限時間 [s]
     Text timeText;                   // UIText コンポーネント
     float currentTime;             // 残り時間タイマー
+    public bool TimerFlag;
 
 
     // Start is called before the first frame update
@@ -36,6 +37,10 @@ public class TimerMng : MonoBehaviour
         int mseconds = Mathf.FloorToInt((currentTime - minutes * 60 - seconds) * 1000);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
+        if (115.0f >= currentTime)
+        {
+            TimerFlag = true;
+        }
 
     }
 }

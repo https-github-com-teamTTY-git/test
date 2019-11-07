@@ -49,7 +49,8 @@ public class ScoreMng : MonoBehaviour
 
     void SetScore()
     {
-        scoreText.text = string.Format("Score:{0}円", score);
+      //  scoreText.text = string.Format("Score:{0}えん", score);
+        scoreText.text = "Score:" + score + "えん";
     }
 
     public static int GetScore()
