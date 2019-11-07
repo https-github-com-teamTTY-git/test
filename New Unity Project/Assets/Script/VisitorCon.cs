@@ -6,7 +6,7 @@ public class VisitorCon : MonoBehaviour
 {
 
     private Chair chair;
-
+    private Table table;
 
     private bool poszFlag;  // X側に動かなくなった時true
     private bool posxFlag;  // Z側に動かなくなった時true
@@ -16,8 +16,10 @@ public class VisitorCon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject obj = GameObject.Find("Chair_1");
+        GameObject obj = GameObject.Find("Chair_2");
         chair = obj.GetComponent<Chair>();
+
+        table = GameObject.Find("Table").GetComponent<Table>();
     }
 
     // Update is called once per frame
@@ -48,6 +50,7 @@ public class VisitorCon : MonoBehaviour
         // 到着したらposFlagをtrueにする
         if (poszFlag == true && posxFlag == true)
         {
+            Angle();
             Debug.Log("Flags true");
             updateFlag = true;
         }
@@ -90,7 +93,7 @@ public class VisitorCon : MonoBehaviour
             if (this.gameObject.transform.position.z < chair.gameObject.transform.position.z)
             {
                 this.gameObject.transform.Translate(0, 0, -0.05f);
-                Debug.Log("-Z:false");
+               Debug.Log("-Z:false");
                 poszFlag = false;
             }
             if (this.gameObject.transform.position.z > chair.gameObject.transform.position.z)
@@ -109,4 +112,17 @@ public class VisitorCon : MonoBehaviour
         }
     }
 
+    void Angle()
+    {
+        if (!updateFlag)
+        {
+            Vector2 visitorPos = new Vector2(this.transform.position.x, this.transform.position.z); // 自分の座標(Vec2)
+            Vector2 tablePos = new Vector2(table.transform.position.x, table.transform.position.z);
+
+            Vector2 anglePos = tablePos - visitorPos;
+            float angle = Mathf.Atan2(anglePos.y, anglePos.x) * Mathf.Rad2Deg;
+            angle = Mathf.Abs(angle);
+            this.transform.Rotate(0, angle - 90.0f, 0);
+        }
+    }
 }
