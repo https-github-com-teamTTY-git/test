@@ -8,7 +8,7 @@ public class ScoreMng : MonoBehaviour
 {
     [SerializeField]
     public Text scoreText; //Text用変数
-    private static int score = 0; //スコア計算用変数
+    public static int score = 0; //スコア計算用変数
                                   // staticつけたからタイトルで初期化しようぜ　リザルトで使える
 
     private VisitorCon audience;
@@ -50,5 +50,10 @@ public class ScoreMng : MonoBehaviour
     void SetScore()
     {
         scoreText.text = string.Format("Score:{0}円", score);
+    }
+
+    public static int GetScore()
+    {
+        return score;
     }
 }
