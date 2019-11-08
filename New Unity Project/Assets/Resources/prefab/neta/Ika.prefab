@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8056021319161477569}
   - component: {fileID: 1761014177833131538}
   - component: {fileID: 897396922885941768}
+  - component: {fileID: 2131289621294923943}
   m_Layer: 0
   m_Name: Ika
   m_TagString: Ika
@@ -121,3 +122,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f268e6aac6af0fe408eb01dd757683ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2131289621294923943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297246430103427561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a762f0b37872b4e9ca7e8df7ded466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freshnessSnd: 15

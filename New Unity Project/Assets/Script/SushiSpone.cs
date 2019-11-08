@@ -12,6 +12,7 @@ public class SushiSpone : MonoBehaviour
     private List<GameObject> sushiObjList;
     private List<int> sushiCount;
     private int totalCnt;
+    Object[] sushiObj;
 
     //スポーン用変数
     [SerializeField]
@@ -24,7 +25,7 @@ public class SushiSpone : MonoBehaviour
     private void Start()
     {
         //Resourcesフォルダ内のprefabフォルダ内の全てのプレハブを取得
-        Object[] sushiObj = Resources.LoadAll("prefab/neta");
+        sushiObj = Resources.LoadAll("prefab/neta/");
         sushiObjList = new List<GameObject>();
         sushiCount = new List<int>();
         foreach (GameObject obj in sushiObj)
@@ -57,6 +58,7 @@ public class SushiSpone : MonoBehaviour
             {
                 //指定オブジェクトスポーン
                 GameObject obj = Instantiate<GameObject>(sushiObjList[nextObjNum], this.transform.position, Quaternion.Euler(-90, 0, 90));
+                obj.name = sushiObj[nextObjNum].name;
                 sushiCount[nextObjNum]++;
                 randStart = true;
             }

@@ -19,7 +19,7 @@ public class YajiRight : MonoBehaviour
         if (laneTest.rightFlag)
         {
             MeshRenderer meshrender = GetComponent<MeshRenderer>();
-            meshrender.material.color = new Color(255, 0, 0, 1.0f);
+            meshrender.material.color = new Color(255, 227, 0, 1.0f);
         }
         else
         {

@@ -34,9 +34,12 @@ public class Box : MonoBehaviour
     // 衝突した際に親子関係を持たせる
     void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.name == "Plane")
+        {
+            Destroy(this.transform.gameObject);
+        }
         // エフェクトの表示
         effectObj.transform.GetChild(0).transform.gameObject.SetActive(true);
-
         foreach (string name in rideOnList)
         {
             if(name == collision.gameObject.name)
