@@ -11,7 +11,7 @@ public class ScoreMng : MonoBehaviour
     public static int score = 0; //スコア計算用変数
                                   // staticつけたからタイトルで初期化しようぜ　リザルトで使える
 
-    private VisitorCon audience;
+   // private VisitorCon audience;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +21,8 @@ public class ScoreMng : MonoBehaviour
         SetScore();   //初期スコアを代入して表示
 
         // audienceが止まって寿司があたった時に消えるからその時にスコア加算
-        GameObject Audience = GameObject.Find("Audience5");
-        audience = Audience.GetComponent<VisitorCon>();
+        //GameObject Audience = GameObject.Find("Audience5");
+        //audience = Audience.GetComponent<VisitorCon>();
 
     }
 
@@ -31,25 +31,31 @@ public class ScoreMng : MonoBehaviour
     {
 
     }
-    void OnTriggerStay(Collider collision)// triggerがあるときはこれ
-    {
-        string myTag = gameObject.tag;    // 自分自身のタグ
+    //void OnTriggerStay(Collider collision)// triggerがあるときはこれ
+    //{
+    //    string myTag = gameObject.tag;    // 自分自身のタグ
 
-        if (audience.updateFlag == true)
-        {
-            if (myTag == collision.gameObject.tag)
-            {
-                score += 150;
-                Debug.Log("collision[score+150]");
-            }
-        }
-        SetScore();
+    //    if (audience.updateFlag == true)
+    //    {
+    //        if (myTag == collision.gameObject.tag)
+    //        {
+    //            score += 150;
+    //            Debug.Log("collision[score+150]");
+    //        }
+    //    }
+    //    SetScore();
+    //}
+
+    public void AddScore()
+    {
+        score += 150;
+        Debug.Log("プラス150えん");
+         SetScore();
     }
 
 
     void SetScore()
     {
-      //  scoreText.text = string.Format("Score:{0}えん", score);
         scoreText.text = "Score:" + score + "えん";
     }
 
@@ -57,4 +63,9 @@ public class ScoreMng : MonoBehaviour
     {
         return score;
     }
+
+    //void Awake()
+    //{
+    //    gameObject.AddComponent<ScoreMng>();
+    //}
 }

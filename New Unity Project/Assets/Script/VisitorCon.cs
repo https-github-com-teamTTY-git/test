@@ -10,7 +10,7 @@ public class VisitorCon : MonoBehaviour
 
     private bool poszFlag;  // X側に動かなくなった時true
     private bool posxFlag;  // Z側に動かなくなった時true
-    public bool updateFlag; // XとZ両方がtrueの時true
+    public bool updateFlag=false; // XとZ両方がtrueの時true
 
     private StartText startText;
     // Start is called before the first frame update
@@ -36,13 +36,12 @@ public class VisitorCon : MonoBehaviour
                 MoveX();
                 MoveZ();
             }
-            Debug.Log(this.gameObject.transform.position);
+           // Debug.Log(this.gameObject.transform.position);
 
             // 到着したらposFlagをtrueにする
             if (poszFlag == true && posxFlag == true)
             {
                 Angle();
-                Debug.Log("Flags true");
                 updateFlag = true;
             }
         }
@@ -64,23 +63,21 @@ public class VisitorCon : MonoBehaviour
             {
 
                 this.gameObject.transform.Translate(-0.05f, 0, 0);
-                Debug.Log("-X:false");
                 posxFlag = false;
 
             }
             if (this.gameObject.transform.position.x > chair.gameObject.transform.position.x)
             {
                 this.gameObject.transform.Translate(0.05f, 0, 0);
-                Debug.Log("+X:false");
                 posxFlag = false;
             }
         }
+
         // 0.01以下なら止まった判定
         float XDiff = Mathf.Abs(chair.gameObject.transform.position.x - this.gameObject.transform.position.x);
         if (XDiff <= 0.05f)
         {
             posxFlag = true;
-            Debug.Log("posxFlag:true");
         }
 
     }
@@ -92,13 +89,11 @@ public class VisitorCon : MonoBehaviour
             if (this.gameObject.transform.position.z < chair.gameObject.transform.position.z)
             {
                 this.gameObject.transform.Translate(0, 0, -0.05f);
-               Debug.Log("-Z:false");
                 poszFlag = false;
             }
             if (this.gameObject.transform.position.z > chair.gameObject.transform.position.z)
             {
                 this.gameObject.transform.Translate(0, 0, 0.05f);
-                Debug.Log("+Z:false");
                 poszFlag = false;
             }
         }
@@ -106,8 +101,6 @@ public class VisitorCon : MonoBehaviour
         if (ZDiff <= 0.05f)
         {
             poszFlag = true;
-            Debug.Log("poszFlag:true");
-
         }
     }
 

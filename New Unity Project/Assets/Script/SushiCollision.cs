@@ -6,13 +6,16 @@ public class SushiCollision : MonoBehaviour
 {
     private VisitorCon audience;
 
+    private ScoreMng score;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject Audience = GameObject.Find("Audience5");
-        audience = Audience.GetComponent<VisitorCon>();
+        //GameObject Audience = GameObject.Find("Audience");
+        //audience = Audience.GetComponent<VisitorCon>();
+        audience = GameObject.Find("Audience").GetComponent<VisitorCon>();
 
+        score = GameObject.Find("ScoreMng").GetComponent<ScoreMng>();
     }
 
     // Update is called once per frame
@@ -20,23 +23,22 @@ public class SushiCollision : MonoBehaviour
     {
 
     }
+
     void OnTriggerStay(Collider collision)// triggerがあるときはこれ
     {
         string myTag = gameObject.tag;    // 自分自身のタグ
 
+        // Debug.Log("sushiCollision");
         if (audience.updateFlag == true)
         {
-            Debug.Log("collisionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+            //  Debug.Log("collisionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
             if (myTag == collision.gameObject.tag)
             {
-
-                Debug.Log("衝突したオブジェクト：" + gameObject.name);// 当たり判定
-                Debug.Log("衝突されたオブジェクト：" + collision.gameObject.name);//寿司
+                score.AddScore();
 
                 Destroy(collision.gameObject);// 衝突した方(寿司)のオブジェクトを破壊
             }
-        }
-
+       }
     }
 
 

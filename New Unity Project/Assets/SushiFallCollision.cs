@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine.SceneManagement;
-
-public class OnButton : MonoBehaviour
+public class SushiFallCollision : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void ButtonClicked()
+
+
+    void OnTriggerStay(Collider collider)
     {
-        SceneManager.LoadScene("TitleScene");
-        Debug.Log("Button click!");
+        Destroy(collider.gameObject);// 衝突した方(寿司)のオブジェクトを破壊
     }
+
+
 }
