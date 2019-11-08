@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44427943, g: 0.4937299, b: 0.5731038, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3043,15 +3043,50 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7437028435026116284, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958287765095913798, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7437028435026116281, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2007296989}
+    - target: {fileID: 7958287764617411625, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7958287765095913796, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2007296987}
+    - target: {fileID: 7958287765095913796, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.5411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958287765095913796, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958287765095913796, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.95686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958287764339561607, guid: aac4bb2ddea2b0546bc299b5b3afe16b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aac4bb2ddea2b0546bc299b5b3afe16b, type: 3}
