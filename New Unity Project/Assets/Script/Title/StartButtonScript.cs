@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class StartButtonScript : MonoBehaviour
 {
    private bool isFadeOut = false;  // フェードアウト処理の開始、完了を管理するフラグ
-   private bool isFadeIn = false;   // フェードイン処理の開始、完了を管理するフラグ
-
+   
    private FadeController fadeCtl;
 
     // Start is called before the first frame update
