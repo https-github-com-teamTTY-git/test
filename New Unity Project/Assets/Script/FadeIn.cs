@@ -6,14 +6,15 @@ using UnityEngine.UI;
 
 public class FadeIn : MonoBehaviour
 {
-    float fadeSpeed = 0.02f;        //透明度が変わるスピードを管理
-    float red, green, blue, alfa;   //パネルの色、不透明度を管理
+    [SerializeField]
+    private float fadeSpeed = 0.02f;        // 透明度が変わるスピードを管理
 
-    bool isendFadeFlg = false;        // 終わったらtrue
-    bool isFadeIn = false;   //フェードイン処理の開始、完了を管理するフラグ
+    private float red, green, blue, alfa;   // パネルの色、不透明度を管理
 
+    private bool isendFadeFlg = false;      // 終わったらtrue
+    private bool isFadeIn = false;          // フェードイン処理の開始、完了を管理するフラグ
 
-    Image fadeImage;                //透明度を変更するパネルのイメージ
+    private Image fadeImage;                // 透明度を変更するパネルのイメージ
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +30,9 @@ public class FadeIn : MonoBehaviour
     void Update()
     {
         isFadeIn = true;
-        //GetComponent<Image>().enabled = true; //オフにしていたPanelのImageコンポーネントをオンに変更
-        //GetComponent<Image>().color = new Color(255, 0, 0, 0.5f);　//Imageのカラーを変更。Colorの引数は（ 赤, 緑, 青, 不透明度 ）の順で指定
         if (isFadeIn)
         {
+            // フェードインを行って、isendFadeFlgがtrueになったら終了する
             if (StartFadeIn())
             {
                 isFadeIn = false;
@@ -41,25 +41,20 @@ public class FadeIn : MonoBehaviour
         }
     }
 
-    public bool StartFadeIn()
+    bool StartFadeIn()
     {
-        alfa -= fadeSpeed;                //a)不透明度を徐々に下げる
-        SetAlpha();                      //b)変更した不透明度パネルに反映する
+        alfa -= fadeSpeed;                // 不透明度を徐々に下げる
+        SetAlpha();                       // 変更した不透明度パネルに反映する
         if (alfa <= 0.0f)
-        {                    //c)完全に透明になったら処理を抜ける
-            fadeImage.enabled = false;    //d)パネルの表示をオフにする
+        {                                 // 完全に透明になったら処理を抜ける
+            fadeImage.enabled = false;    // パネルの表示をオフにする
             isendFadeFlg = true;
         }
-        return isendFadeFlg;
+        return isendFadeFlg;              // 処理を終了するのでtrueにする
     }
 
     void SetAlpha()
     {
         fadeImage.color = new Color(red, green, blue, alfa);
-    }
-
-    void OnActiveSceneChanged()
-    {
-        isFadeIn = true;
     }
 }

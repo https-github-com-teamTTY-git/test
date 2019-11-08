@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class StartButtonScript : MonoBehaviour
 {
-   bool isFadeOut = false;         //フェードアウト処理の開始、完了を管理するフラグ
-   bool isFadeIn = false;   //フェードイン処理の開始、完了を管理するフラグ
+   private bool isFadeOut = false;  // フェードアウト処理の開始、完了を管理するフラグ
+   private bool isFadeIn = false;   // フェードイン処理の開始、完了を管理するフラグ
 
-    private FadeController fadeCtl;
+   private FadeController fadeCtl;
 
     // Start is called before the first frame update
     void Start()
@@ -26,27 +26,12 @@ public class StartButtonScript : MonoBehaviour
             // fadeOutのreturnでisendFadeFlgがtrueになったとき
             if (fadeCtl.StartFadeOut())
             {
-                // fadeInする
+                // フェードアウト終了→シーン遷移
                 isFadeOut = false;
-                //isFadeIn = true;
                 fadeCtl.isendFadeFlg = false;
-                // ゲームシーンへ
                 SceneManager.LoadScene("Scenes/GameScene");
-
             }
         }
-
-        // fadeInのreturnでisendFadeFlgがtrueになったとき
-        // GameSceneで新しくパネルをつかってやったほうがいい
-        //if(isFadeIn)
-        //{
-        //    if (fadeCtl.StartFadeIn())
-        //    {
-        //        isFadeIn = false;
-        //        // ゲームシーンへ
-        //        SceneManager.LoadScene("Scenes/GameScene");
-        //    }
-        //}
     }
 
     public void OnClick()
