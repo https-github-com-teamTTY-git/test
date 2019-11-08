@@ -10,7 +10,7 @@ public class VisitorCon : MonoBehaviour
 
     private bool poszFlag;  // X側に動かなくなった時true
     private bool posxFlag;  // Z側に動かなくなった時true
-    public bool updateFlag=false; // XとZ両方がtrueの時true
+    public bool updateFlag; // XとZ両方がtrueの時true
 
     private StartText startText;
     // Start is called before the first frame update
