@@ -11,7 +11,7 @@ public class FadeIn : MonoBehaviour
 
     private float red, green, blue, alfa;   // パネルの色、不透明度を管理
 
-    private bool isendFadeFlg = false;      // 終わったらtrue
+    public bool isendFadeFlg = false;      // 終わったらtrue
     private bool isFadeIn = false;          // フェードイン処理の開始、完了を管理するフラグ
 
     private Image fadeImage;                // 透明度を変更するパネルのイメージ
@@ -36,7 +36,6 @@ public class FadeIn : MonoBehaviour
             if (StartFadeIn())
             {
                 isFadeIn = false;
-                isendFadeFlg = false;
             }
         }
     }

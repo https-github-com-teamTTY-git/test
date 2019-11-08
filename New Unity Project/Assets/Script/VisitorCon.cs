@@ -12,9 +12,11 @@ public class VisitorCon : MonoBehaviour
     private bool posxFlag;  // Z側に動かなくなった時true
     public bool updateFlag; // XとZ両方がtrueの時true
 
+    private StartText startText;
     // Start is called before the first frame update
     void Start()
     {
+        startText = GameObject.Find("StartText").GetComponent<StartText>();
         gameObject.SetActive(true);
 
         GameObject obj = GameObject.Find("Chair_2");
@@ -26,22 +28,24 @@ public class VisitorCon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 処理しなくなった時が目的地
-        if (Enter())
+        if (startText.startFlag == true)
         {
-            MoveX();
-            MoveZ();
-        }
-        Debug.Log(this.gameObject.transform.position);
+            // 処理しなくなった時が目的地
+            if (Enter())
+            {
+                MoveX();
+                MoveZ();
+            }
+            Debug.Log(this.gameObject.transform.position);
 
-        // 到着したらposFlagをtrueにする
-        if (poszFlag == true && posxFlag == true)
-        {
-            Angle();
-            Debug.Log("Flags true");
-            updateFlag = true;
+            // 到着したらposFlagをtrueにする
+            if (poszFlag == true && posxFlag == true)
+            {
+                Angle();
+                Debug.Log("Flags true");
+                updateFlag = true;
+            }
         }
-
     }
     bool Enter()
     {

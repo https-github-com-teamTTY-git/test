@@ -11,10 +11,12 @@ public class TimerMng : MonoBehaviour
     float currentTime;             // 残り時間タイマー
     public bool TimerFlag;
 
+    private StartText startText;
 
     // Start is called before the first frame update
     void Start()
     {
+        startText = GameObject.Find("StartText").GetComponent<StartText>();
         // Textコンポーネント取得
         timeText = GetComponent<Text>();
         // 残り時間を設定
@@ -24,23 +26,25 @@ public class TimerMng : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 残り時間を計算する
-        currentTime -= Time.deltaTime;
-
-        // ゼロ秒以下にならないようにする
-        if (currentTime <= 0.0f)
+        if (startText.startFlag == true)
         {
-            currentTime = 0.0f;
-        }
-        int minutes = Mathf.FloorToInt(currentTime / 60F);
-        int seconds = Mathf.FloorToInt(currentTime - minutes * 60);
-        int mseconds = Mathf.FloorToInt((currentTime - minutes * 60 - seconds) * 1000);
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            // 残り時間を計算する
+            currentTime -= Time.deltaTime;
 
-        if (115.0f >= currentTime)
-        {
-            TimerFlag = true;
-        }
+            // ゼロ秒以下にならないようにする
+            if (currentTime <= 0.0f)
+            {
+                currentTime = 0.0f;
+            }
+            int minutes = Mathf.FloorToInt(currentTime / 60F);
+            int seconds = Mathf.FloorToInt(currentTime - minutes * 60);
+            int mseconds = Mathf.FloorToInt((currentTime - minutes * 60 - seconds) * 1000);
+            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
+            if (115.0f >= currentTime)
+            {
+                TimerFlag = true;
+            }
+        }
     }
 }
