@@ -24,7 +24,7 @@ public class SushiSpone : MonoBehaviour
     private void Start()
     {
         //Resourcesフォルダ内のprefabフォルダ内の全てのプレハブを取得
-        Object[] sushiObj = Resources.LoadAll("prefab");
+        Object[] sushiObj = Resources.LoadAll("prefab/neta");
         sushiObjList = new List<GameObject>();
         sushiCount = new List<int>();
         foreach (GameObject obj in sushiObj)
