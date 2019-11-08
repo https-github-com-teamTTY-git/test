@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    private GameObject effectObj;
+
     private Vector3 sushiScale;
     private Quaternion rotate;
     private List<string> rideOnList;
@@ -12,6 +14,9 @@ public class Box : MonoBehaviour
 
     private void Start()
     {
+        effectObj = GameObject.Find("Effect");  
+        effectObj.transform.GetChild(0).transform.gameObject.SetActive(false);
+
         sushiScale = transform.lossyScale;
         rotate = transform.rotation;
         rideOnList = new List<string>();
@@ -29,6 +34,9 @@ public class Box : MonoBehaviour
     // 衝突した際に親子関係を持たせる
     void OnCollisionEnter(Collision collision)
     {
+        // エフェクトの表示
+        effectObj.transform.GetChild(0).transform.gameObject.SetActive(true);
+
         foreach (string name in rideOnList)
         {
             if(name == collision.gameObject.name)
