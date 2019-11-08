@@ -40,7 +40,7 @@ public class StartText : MonoBehaviour
 
         if ((fadeIn.isendFadeFlg == true)&& (7.0f <= currentTime))
         {
-            timeText.text = "よーい";
+            timeText.text = "　よーい";
         }
         else if ((5.0f <= currentTime) && (currentTime <= 7.5f))
         {
