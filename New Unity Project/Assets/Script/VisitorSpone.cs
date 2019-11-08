@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class VisitorSpone : MonoBehaviour
 {
+    //席
+    ChairMng chair;
+
     //来客モデルのプレハブリスト
     private List<GameObject> visitorObjList;
     private List<int> visitroCount;
@@ -36,6 +39,7 @@ public class VisitorSpone : MonoBehaviour
             visitroCount.Add(0);
             visitorObjList.Add(obj);
         }
+        chair = GameObject.Find("ChairMng").GetComponent<ChairMng>();
         flamNum = 0;
         totalCnt = 0;
     }
@@ -46,9 +50,14 @@ public class VisitorSpone : MonoBehaviour
         flamNum++;
         if(flamNum%(spTimeSecond*flamSecond)==0)
         {
-            GameObject obj = Instantiate<GameObject>(visitorObjList[totalCnt % 5], sponePos[Random.Range(0, 2)], Quaternion.Euler(0, 180, 0));
-            visitroCount[totalCnt]++;
-            totalCnt++;
+            if (chair.CheckChair())
+            {
+                GameObject obj = Instantiate<GameObject>(visitorObjList[totalCnt % 5], sponePos[Random.Range(0, 2)], Quaternion.Euler(0, 180, 0));
+                VisitorCon visitor = obj.GetComponent<VisitorCon>();
+                visitor.SetDestination(chair.vacancy());
+                visitroCount[totalCnt]++;
+                totalCnt++;
+            }
         }
     }
 }
