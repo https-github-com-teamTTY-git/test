@@ -70,14 +70,14 @@ public class VisitorCon : MonoBehaviour
             if (this.gameObject.transform.position.x < chair.gameObject.transform.position.x)
             {
 
-                this.gameObject.transform.Translate(-0.1f, 0, 0);
+                this.gameObject.transform.Translate(-0.05f, 0, 0);
                 Debug.Log("-X:false");
                 posxFlag = false;
 
             }
             if (this.gameObject.transform.position.x > chair.gameObject.transform.position.x)
             {
-                this.gameObject.transform.Translate(0.1f, 0, 0);
+                this.gameObject.transform.Translate(0.05f, 0, 0);
                 Debug.Log("+X:false");
                 posxFlag = false;
             }
@@ -98,13 +98,13 @@ public class VisitorCon : MonoBehaviour
         {
             if (this.gameObject.transform.position.z < chair.gameObject.transform.position.z)
             {
-                this.gameObject.transform.Translate(0, 0, -0.1f);
+                this.gameObject.transform.Translate(0, 0, -0.05f);
                Debug.Log("-Z:false");
                 poszFlag = false;
             }
             if (this.gameObject.transform.position.z > chair.gameObject.transform.position.z)
             {
-                this.gameObject.transform.Translate(0, 0, 0.1f);
+                this.gameObject.transform.Translate(0, 0, 0.05f);
                 Debug.Log("+Z:false");
                 poszFlag = false;
             }
