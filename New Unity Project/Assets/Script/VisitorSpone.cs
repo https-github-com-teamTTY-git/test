@@ -53,6 +53,7 @@ public class VisitorSpone : MonoBehaviour
             if (chair.CheckChair())
             {
                 GameObject obj = Instantiate<GameObject>(visitorObjList[totalCnt % 5], sponePos[Random.Range(0, 2)], Quaternion.Euler(0, 180, 0));
+                obj.name = "Audience";
                 VisitorCon visitor = obj.GetComponent<VisitorCon>();
                 visitor.SetDestination(chair.vacancy());
                 visitroCount[totalCnt]++;

@@ -20,6 +20,5 @@ public class ResultButton : MonoBehaviour
     public void ButtonClicked()
     {
         SceneManager.LoadScene("TitleScene");
-        Debug.Log("Button click!");
     }
 }

@@ -28,15 +28,13 @@ public class SushiCollision : MonoBehaviour
     {
         string myTag = gameObject.tag;    // 自分自身のタグ
 
-        // Debug.Log("sushiCollision");
         if (audience.updateFlag == true)
         {
-            //  Debug.Log("collisionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn");
             if (myTag == collision.gameObject.tag)
             {
                 score.AddScore();
-
                 Destroy(collision.gameObject);// 衝突した方(寿司)のオブジェクトを破壊
+
             }
        }
     }

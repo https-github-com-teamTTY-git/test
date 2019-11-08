@@ -41,7 +41,7 @@ public class TimerMng : MonoBehaviour
             int mseconds = Mathf.FloorToInt((currentTime - minutes * 60 - seconds) * 1000);
             timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-            if (115.0f >= currentTime)
+            if (0.1f >= currentTime)
             {
                 TimerFlag = true;
             }

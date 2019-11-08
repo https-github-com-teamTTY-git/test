@@ -31,10 +31,11 @@ public class ScoreMng : MonoBehaviour
     {
 
     }
+
     //void OnTriggerStay(Collider collision)// triggerがあるときはこれ
     //{
     //    string myTag = gameObject.tag;    // 自分自身のタグ
-
+//
     //    if (audience.updateFlag == true)
     //    {
     //        if (myTag == collision.gameObject.tag)
