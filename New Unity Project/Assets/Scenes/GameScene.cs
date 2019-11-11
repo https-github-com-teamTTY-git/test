@@ -17,7 +17,7 @@ public class GameScene : MonoBehaviour
 
 
         // 数字で経過時間を決める
-        Invoke("ChangeScene", 130.0f);
+        Invoke("ChangeScene", 10.0f);
 
     }
 

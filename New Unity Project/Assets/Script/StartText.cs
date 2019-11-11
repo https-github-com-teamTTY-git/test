@@ -10,6 +10,7 @@ public class StartText : MonoBehaviour
     Text timeText;                   // UIText コンポーネント
     float currentTime;             // 残り時間タイマー
     public bool startFlag;
+    private AudioSource seSound;
 
     private FadeIn fadeIn;
     // Start is called before the first frame update
@@ -21,8 +22,7 @@ public class StartText : MonoBehaviour
         timeText = GetComponent<Text>();
         // 残り時間を設定
         currentTime = gameTime;
-
-
+        seSound = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,6 +45,7 @@ public class StartText : MonoBehaviour
         else if ((5.0f <= currentTime) && (currentTime <= 7.5f))
         {
             timeText.text = "スタート！！";
+            seSound.Play();
         }
         else
         {
