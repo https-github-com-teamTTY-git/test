@@ -25,6 +25,7 @@ public class ChairMng : MonoBehaviour
         GameObject[] visitors = GameObject.FindGameObjectsWithTag("Visitor");
         for (int i = 0; i < 5; i++)
         {
+            sitFlag[i] = false;
             foreach (GameObject visitor in visitors)
             {
                 VisitorCon obj = visitor.GetComponent<VisitorCon>();

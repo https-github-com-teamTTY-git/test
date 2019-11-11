@@ -13,7 +13,7 @@ public class SushiCollision : MonoBehaviour
     {
         //GameObject Audience = GameObject.Find("Audience");
         //audience = Audience.GetComponent<VisitorCon>();
-        audience = GameObject.Find("Audience").GetComponent<VisitorCon>();
+        audience = transform.parent.GetComponent<VisitorCon>();
         score = GameObject.Find("ScoreMng").GetComponent<ScoreMng>();
     }
 
@@ -32,11 +32,11 @@ public class SushiCollision : MonoBehaviour
             if (myTag == collision.gameObject.tag)
             {
                 score.AddScore();
-                Debug.Log(this.gameObject.tag);
                 Destroy(collision.gameObject);// 衝突した方(寿司)のオブジェクトを破壊
+                audience.Back();
 
             }
-       }
+        }
     }
 
 
