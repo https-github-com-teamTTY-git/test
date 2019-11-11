@@ -1322,7 +1322,7 @@ Transform:
   m_Children:
   - {fileID: 400076}
   - {fileID: 400074}
-  - {fileID: 4974512222168401416}
+  - {fileID: 4052002357492722052}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1390,13 +1390,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateFlag: 0
---- !u!1001 &7417129588344933919
+--- !u!1001 &2007600748214296979
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 400078}
     m_Modifications:
+    - target: {fileID: 2587305421324224534, guid: 6a338d451bbf42b47bb217d87105d692,
+        type: 3}
+      propertyPath: m_Name
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 2587305421324224535, guid: 6a338d451bbf42b47bb217d87105d692,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1452,21 +1457,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2587305421324224534, guid: 6a338d451bbf42b47bb217d87105d692,
-        type: 3}
-      propertyPath: m_Name
-      value: Collision
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587305421324224553, guid: 6a338d451bbf42b47bb217d87105d692,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a338d451bbf42b47bb217d87105d692, type: 3}
---- !u!4 &4974512222168401416 stripped
+--- !u!4 &4052002357492722052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2587305421324224535, guid: 6a338d451bbf42b47bb217d87105d692,
     type: 3}
-  m_PrefabInstance: {fileID: 7417129588344933919}
+  m_PrefabInstance: {fileID: 2007600748214296979}
   m_PrefabAsset: {fileID: 0}

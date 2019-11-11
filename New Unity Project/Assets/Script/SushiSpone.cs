@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SushiSpone : MonoBehaviour
 {
-    SushiRundom sushiRundom = null;
+    private SushiRundom random;
     private bool randStart;         //乱数を取るかどうかのフラグ
     private int nextObjNum;         //次回の種別
 
@@ -33,9 +33,9 @@ public class SushiSpone : MonoBehaviour
             sushiCount.Add(0);
             sushiObjList.Add(obj);
         }
-        sushiRundom = this.GetComponent<SushiRundom>();
+        random = GameObject.FindGameObjectWithTag("Random").GetComponent<SushiRundom>();
         randStart = false;
-        nextObjNum = sushiRundom.GetRandom(sushiObjList.Count);
+        nextObjNum = random.GetRandom(sushiObjList.Count);
         flamNum = 0;
         totalCnt = 0;
     }
@@ -45,7 +45,7 @@ public class SushiSpone : MonoBehaviour
         if (randStart)
         {
             //次出現させる寿司を決めておく
-            nextObjNum = sushiRundom.GetRandom(sushiObjList.Count);
+            nextObjNum = random.GetRandom(sushiObjList.Count);
             randStart = false;
         }
 

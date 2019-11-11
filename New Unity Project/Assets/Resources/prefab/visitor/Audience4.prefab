@@ -1397,6 +1397,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 400078}
     m_Modifications:
+    - target: {fileID: 2587305421324224534, guid: 6a338d451bbf42b47bb217d87105d692,
+        type: 3}
+      propertyPath: m_Name
+      value: Collision
+      objectReference: {fileID: 0}
     - target: {fileID: 2587305421324224535, guid: 6a338d451bbf42b47bb217d87105d692,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1451,11 +1456,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587305421324224534, guid: 6a338d451bbf42b47bb217d87105d692,
-        type: 3}
-      propertyPath: m_Name
-      value: Collision
       objectReference: {fileID: 0}
     - target: {fileID: 2587305421324224553, guid: 6a338d451bbf42b47bb217d87105d692,
         type: 3}

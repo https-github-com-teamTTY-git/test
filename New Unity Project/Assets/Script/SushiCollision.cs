@@ -14,7 +14,6 @@ public class SushiCollision : MonoBehaviour
         //GameObject Audience = GameObject.Find("Audience");
         //audience = Audience.GetComponent<VisitorCon>();
         audience = GameObject.Find("Audience").GetComponent<VisitorCon>();
-
         score = GameObject.Find("ScoreMng").GetComponent<ScoreMng>();
     }
 

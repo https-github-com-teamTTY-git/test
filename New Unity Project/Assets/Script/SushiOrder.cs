@@ -5,40 +5,49 @@ using UnityEngine.UI;
 
 public class SushiOrder : MonoBehaviour
 {
-    SushiRundom sushiRundom = null;
     private int orderObjNum;         //注文種別
-    [SerializeField]
     private bool orderFlag;          //注文フラグ
-    
+    private SushiRundom random;
 
     //寿司モデルのプレハブリスト
     private List<GameObject> sushiObjList;
-    private List<int> sushiCount;
+    private Object[] sushiObj;
 
-    void Start()
+    private void Start()
     {
         //Resourcesフォルダ内のprefabフォルダ内の全てのプレハブを取得
-        Object[] sushiObj = Resources.LoadAll("prefab/neta/");
+        sushiObj = Resources.LoadAll("prefab/neta/");
         sushiObjList = new List<GameObject>();
-        sushiCount = new List<int>();
         foreach (GameObject obj in sushiObj)
         {
-            sushiCount.Add(0);
             sushiObjList.Add(obj);
         }
-        sushiRundom = this.GetComponent<SushiRundom>();
         orderObjNum = 0;
         orderFlag = false;
+        random = GameObject.FindGameObjectWithTag("Random").GetComponent<SushiRundom>();
     }
 
-    void Update()
+    private void Update()
+    {
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Visitor")
+        {
+            orderFlag = true;
+            Invoke("Order", 2.0f);
+            orderObjNum = random.GetRandom(sushiObjList.Count);
+            other.transform.GetChild(2).gameObject.tag = sushiObjList[orderObjNum].name;
+        }
+    }
+
+    private void Order()
     {
         //注文する
-        if(orderFlag)
+        if (orderFlag)
         {
-            orderObjNum = sushiRundom.GetRandom(sushiObjList.Count);
             orderFlag = false;
-            //タグをつける
             //オーダーする
             this.transform.GetChild(0).gameObject.SetActive(true);
             this.transform.GetChild(0).transform.GetChild(orderObjNum).gameObject.SetActive(true);
