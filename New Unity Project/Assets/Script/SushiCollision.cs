@@ -32,6 +32,7 @@ public class SushiCollision : MonoBehaviour
             if (myTag == collision.gameObject.tag)
             {
                 score.AddScore();
+                Debug.Log(this.gameObject.tag);
                 Destroy(collision.gameObject);// 衝突した方(寿司)のオブジェクトを破壊
 
             }

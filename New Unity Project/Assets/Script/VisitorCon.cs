@@ -43,13 +43,12 @@ public class VisitorCon : MonoBehaviour
                     MoveZ();
                 }
             }
-            Debug.Log(this.gameObject.transform.position);
+            //Debug.Log(this.gameObject.transform.position);
 
             // 到着したらposFlagをtrueにする
             if (poszFlag == true && posxFlag == true)
             {
                 Angle();
-                Debug.Log("Flags true");
                 updateFlag = true;
             }
         }
@@ -71,14 +70,12 @@ public class VisitorCon : MonoBehaviour
             {
 
                 this.gameObject.transform.Translate(-0.05f, 0, 0);
-                Debug.Log("-X:false");
                 posxFlag = false;
 
             }
             if (this.gameObject.transform.position.x > chair.gameObject.transform.position.x)
             {
                 this.gameObject.transform.Translate(0.05f, 0, 0);
-                Debug.Log("+X:false");
                 posxFlag = false;
             }
         }
@@ -87,7 +84,6 @@ public class VisitorCon : MonoBehaviour
         if (XDiff <= 0.05f)
         {
             posxFlag = true;
-            Debug.Log("posxFlag:true");
         }
 
     }
@@ -99,13 +95,11 @@ public class VisitorCon : MonoBehaviour
             if (this.gameObject.transform.position.z < chair.gameObject.transform.position.z)
             {
                 this.gameObject.transform.Translate(0, 0, -0.05f);
-               Debug.Log("-Z:false");
                 poszFlag = false;
             }
             if (this.gameObject.transform.position.z > chair.gameObject.transform.position.z)
             {
                 this.gameObject.transform.Translate(0, 0, 0.05f);
-                Debug.Log("+Z:false");
                 poszFlag = false;
             }
         }
@@ -113,8 +107,6 @@ public class VisitorCon : MonoBehaviour
         if (ZDiff <= 0.05f)
         {
             poszFlag = true;
-            Debug.Log("poszFlag:true");
-
         }
     }
 

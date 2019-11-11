@@ -38,14 +38,15 @@ public class Box : MonoBehaviour
         {
             Destroy(this.transform.gameObject);
         }
-        // エフェクトの表示
-        effectObj.transform.GetChild(0).transform.gameObject.SetActive(true);
+
         foreach (string name in rideOnList)
         {
             if(name == collision.gameObject.name)
             {
                 destroyFlag = false;
                 transform.parent = parentObj.transform;
+                // エフェクトの表示
+                effectObj.transform.GetChild(0).transform.gameObject.SetActive(true);
                 break;
             }
         }

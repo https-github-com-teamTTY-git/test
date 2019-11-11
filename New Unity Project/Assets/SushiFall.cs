@@ -21,10 +21,22 @@ public class SushiFall : MonoBehaviour
     [SerializeField]
     private int maxSponeCnt = default;
     //[SerializeField]
-    //private Quaternion quaternion= Quaternion.Euler(-90, 0, 90);
+    //private int fallSpeed = default;
     [SerializeField]
-    private Vector3 vec3 = new Vector3(0,0,0);
+    private Vector3 vec3 = new Vector3(0, 0, 0);
 
+    //private Vector3[] sponeSushiPos =
+    //            {
+    //                    new Vector3(-4,15,13),
+    //                    new Vector3( 0,15,13),
+    //                    new Vector3( 5,15,13),
+    //                    new Vector3(-9,15,13),
+    //                    new Vector3(10,15,13)
+    //                };
+    //private int[] fallSpeed =
+    //{
+    //    1,2,3,
+    //};
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +76,8 @@ public class SushiFall : MonoBehaviour
             if (totalCnt <= maxSponeCnt)
             {
                 //指定オブジェクトスポーン
-                GameObject obj = Instantiate<GameObject>(sushiFallObjList[nextObjNum], this.transform.position,Quaternion.Euler(vec3));
+               // this.transform.position = sponeSushiPos[Random.Range(0, 4)];
+                    GameObject obj = Instantiate<GameObject>(sushiFallObjList[nextObjNum],this.transform.position, Quaternion.Euler(vec3));
                 sushiFallCount[nextObjNum]++;
                 randStart = true;
             }
