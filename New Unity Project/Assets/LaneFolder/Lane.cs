@@ -8,7 +8,7 @@ public class Lane : MonoBehaviour
     private int speed = 3;
     private Vector3 clickPos;
     private Vector3 pressPos;
-    private float moveSmall = 100.0f;
+    private float moveSmall = 35.0f;
 
     public bool leftFlag;                   // 左入力中にtrue(矢印に使う)
     public bool rightFlag;                  // 右入力中にtrue(矢印に使う)
