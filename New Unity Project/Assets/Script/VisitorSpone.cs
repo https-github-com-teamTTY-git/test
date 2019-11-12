@@ -9,7 +9,6 @@ public class VisitorSpone : MonoBehaviour
 
     //来客モデルのプレハブリスト
     private List<GameObject> visitorObjList;
-    private List<int> visitroCount;
     private int totalCnt;
 
     private int objNum;     //客の種類
@@ -33,10 +32,8 @@ public class VisitorSpone : MonoBehaviour
         //Visitorフォルダ内のprefabフォルダ内の全てのプレハブを取得
         Object[] visitorObj = Resources.LoadAll("prefab/visitor");
         visitorObjList = new List<GameObject>();
-        visitroCount = new List<int>();
         foreach (GameObject obj in visitorObj)
         {
-            visitroCount.Add(0);
             visitorObjList.Add(obj);
         }
         chair = GameObject.Find("ChairMng").GetComponent<ChairMng>();
@@ -52,11 +49,10 @@ public class VisitorSpone : MonoBehaviour
         {
             if (chair.CheckChair())
             {
-                GameObject obj = Instantiate<GameObject>(visitorObjList[totalCnt % 7], sponePos[Random.Range(0, 2)], Quaternion.Euler(0, 180, 0));
+                GameObject obj = Instantiate<GameObject>(visitorObjList[totalCnt % 6], sponePos[Random.Range(0, 2)], Quaternion.Euler(0, 180, 0));
                 obj.name = "Audience";
                 VisitorCon visitor = obj.GetComponent<VisitorCon>();
                 visitor.SetDestination(chair.vacancy());
-                visitroCount[totalCnt]++;
                 totalCnt++;
             }
         }

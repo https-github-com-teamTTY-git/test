@@ -148,7 +148,20 @@ public class VisitorCon : MonoBehaviour
             Destroy(gameObject);
         }
         transform.rotation = Quaternion.Euler(0, 180.0f, 0);
-        gameObject.transform.Translate(0, 0, 0.1f);
+        if (Mathf.Abs(transform.position.x) >= 20)
+        {
+            transform.Translate(0, 0, 0.1f);
+        }else
+        {
+            if(Destination== "Chair_1"|| Destination == "Chair_2")
+            {
+                transform.Translate(0.1f, 0, 0);
+            }
+            else
+            {
+                transform.Translate(-0.1f, 0, 0);
+            }
+        }
     }
 
     public void Back()
@@ -156,8 +169,6 @@ public class VisitorCon : MonoBehaviour
         if (Destination != null)
         {
             backFlag = true;
-            Destination = null;
-            Debug.Log(backFlag);
         }
     }
 
