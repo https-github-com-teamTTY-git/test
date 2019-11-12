@@ -27,7 +27,7 @@ public class GameScene : MonoBehaviour
         // タイムアップ後にfinish表示
         if (timerMng.TimerFlag == true)
         {
-            finishText.text = "Finish!!";
+            finishText.text = "そこまで！！";
         }
 
     }

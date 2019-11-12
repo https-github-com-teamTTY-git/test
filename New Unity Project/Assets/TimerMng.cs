@@ -39,7 +39,7 @@ public class TimerMng : MonoBehaviour
             int minutes = Mathf.FloorToInt(currentTime / 60F);
             int seconds = Mathf.FloorToInt(currentTime - minutes * 60);
             int mseconds = Mathf.FloorToInt((currentTime - minutes * 60 - seconds) * 1000);
-            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timeText.text = string.Format("のこり "+"{0:00}:{1:00}", minutes, seconds);
 
             if (0.1f >= currentTime)
             {

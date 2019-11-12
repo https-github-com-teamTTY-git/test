@@ -35,7 +35,7 @@ public class ScoreMng : MonoBehaviour
     //void OnTriggerStay(Collider collision)// triggerがあるときはこれ
     //{
     //    string myTag = gameObject.tag;    // 自分自身のタグ
-//
+    //
     //    if (audience.updateFlag == true)
     //    {
     //        if (myTag == collision.gameObject.tag)
@@ -47,13 +47,21 @@ public class ScoreMng : MonoBehaviour
     //    SetScore();
     //}
 
+    // スコア加点
     public void AddScore()
     {
         score += 150;
         Debug.Log("プラス150えん");
-         SetScore();
+        SetScore();
     }
 
+    // スコア減点
+    public void DeductionScore()
+    {
+        score -= 20;
+        Debug.Log("マイナス20えん");
+        SetScore();
+    }
 
     void SetScore()
     {

@@ -6,7 +6,7 @@ public class VisitorSpone : MonoBehaviour
 {
     //席
     ChairMng chair;
-
+    NetaDeviate netaDeviate;
     //来客モデルのプレハブリスト
     private List<GameObject> visitorObjList;
     private int totalCnt;
