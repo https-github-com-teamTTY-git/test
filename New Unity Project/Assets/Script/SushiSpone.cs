@@ -17,8 +17,7 @@ public class SushiSpone : MonoBehaviour
     //スポーン用変数
     [SerializeField]
     private int spTimeSecond = default;         //スポーンする間隔（秒）
-    private int flamNum;                        //フレーム数
-    private int flamSecond = 60;                //1秒間のフレーム数
+    private float flamNum;                      //フレーム数
     [SerializeField]
     private int maxSponeCnt = default;
 
@@ -36,7 +35,7 @@ public class SushiSpone : MonoBehaviour
         random = GameObject.FindGameObjectWithTag("Random").GetComponent<SushiRundom>();
         randStart = false;
         nextObjNum = random.GetRandom(sushiObjList.Count);
-        flamNum = 0;
+        flamNum = 0f;
         totalCnt = 0;
     }
 
@@ -48,10 +47,9 @@ public class SushiSpone : MonoBehaviour
             nextObjNum = random.GetRandom(sushiObjList.Count);
             randStart = false;
         }
-
-        flamNum++;
+        flamNum += Time.deltaTime;
         //フレーム数が指定した間隔になればスポーンor注文させる
-        if (flamNum % (spTimeSecond * flamSecond) == 0)
+        if (spTimeSecond <= flamNum)
         {
             totalCnt++;
             if (totalCnt <= maxSponeCnt)
@@ -62,6 +60,7 @@ public class SushiSpone : MonoBehaviour
                 sushiCount[nextObjNum]++;
                 randStart = true;
             }
+            flamNum = 0;
         }
 
         // [Debug] 各種類の合計数を表示する

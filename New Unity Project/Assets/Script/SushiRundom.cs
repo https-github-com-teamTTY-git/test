@@ -5,8 +5,8 @@ using UnityEngine;
 public class SushiRundom : MonoBehaviour
 {
     //乱数取得用変数
-    private int newObjNum;          //現在の種別
-    private int oldObjNum;          //前回の種別
+    public int newObjNum;          //現在の種別
+    public int oldObjNum;          //前回の種別
 
     private void Start()
     {

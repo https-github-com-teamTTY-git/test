@@ -6,7 +6,7 @@ public class FreshnessCtl : MonoBehaviour
 {
     [SerializeField]
     private int freshnessSnd = default;
-    private int flam;
+    private float flam;
     private Material mat;
     private 
 
@@ -19,14 +19,14 @@ public class FreshnessCtl : MonoBehaviour
 
     void FixedUpdate()
     {
-        flam++;
+        flam += Time.deltaTime;
         //鮮度が半減したら青くさせる
-        if ((freshnessSnd - 5) < (flam / 60))
+        if ((freshnessSnd - 5) < flam)
         {
             this.GetComponent<Renderer>().material = mat;
         }
         //鮮度が完全に落ちたら消去する
-        if (freshnessSnd < (flam / 60))
+        if (freshnessSnd < flam)
         {
             Destroy(this.gameObject);
         }
