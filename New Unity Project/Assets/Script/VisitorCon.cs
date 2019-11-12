@@ -13,7 +13,10 @@ public class VisitorCon : MonoBehaviour
     public bool updateFlag; // XとZ両方がtrueの時true
     private bool backFlag;  // 帰る時true
 
-    private string Destination; //行き先
+    private string Destination;  // 行き先
+
+    private int waitCnt;         // 待ち時間
+    private float vibration;       // 振動
 
     private StartText startText;
     // Start is called before the first frame update
@@ -25,7 +28,8 @@ public class VisitorCon : MonoBehaviour
         table = GameObject.Find("Table").GetComponent<Table>();
 
         backFlag = false;
-        Debug.Log(backFlag);
+        waitCnt = 0;
+        vibration = 0.5f;
     }
 
     // Update is called once per frame
@@ -56,7 +60,12 @@ public class VisitorCon : MonoBehaviour
                 //Debug.Log("Flags true");
                 updateFlag = true;
             }
+            Wait();
             MoveBack();
+        }
+        if (updateFlag)
+        {
+            waitCnt++;
         }
     }
     bool Enter()
@@ -65,7 +74,7 @@ public class VisitorCon : MonoBehaviour
         {
             return true;
         }
-        gameObject.transform.Translate(0, 0, 0.1f);
+        gameObject.transform.Translate(0, 0, 0.3f);
         return false;
     }
     void MoveX()
@@ -75,21 +84,21 @@ public class VisitorCon : MonoBehaviour
             if (gameObject.transform.position.x < chair.gameObject.transform.position.x)
             {
 
-                gameObject.transform.Translate(-0.1f, 0, 0);
+                gameObject.transform.Translate(-0.2f, 0, 0);
                 //Debug.Log("-X:false");
                 posxFlag = false;
 
             }
             if (gameObject.transform.position.x > chair.gameObject.transform.position.x)
             {
-                gameObject.transform.Translate(0.1f, 0, 0);
+                gameObject.transform.Translate(0.2f, 0, 0);
                 //Debug.Log("+X:false");
                 posxFlag = false;
             }
         }
         // 0.01以下なら止まった判定
         float XDiff = Mathf.Abs(chair.gameObject.transform.position.x - gameObject.transform.position.x);
-        if (XDiff <= 0.1f)
+        if (XDiff <= 0.2f)
         {
             posxFlag = true;
            // Debug.Log("posxFlag:true");
@@ -103,19 +112,19 @@ public class VisitorCon : MonoBehaviour
         {
             if (gameObject.transform.position.z < chair.gameObject.transform.position.z)
             {
-                gameObject.transform.Translate(0, 0, -0.1f);
+                gameObject.transform.Translate(0, 0, -0.2f);
               // Debug.Log("-Z:false");
                 poszFlag = false;
             }
             if (gameObject.transform.position.z > chair.gameObject.transform.position.z)
             {
-                gameObject.transform.Translate(0, 0, 0.1f);
+                gameObject.transform.Translate(0, 0, 0.2f);
                // Debug.Log("+Z:false");
                 poszFlag = false;
             }
         }
         float ZDiff = Mathf.Abs(chair.gameObject.transform.position.z - gameObject.transform.position.z);
-        if (ZDiff <= 0.1f)
+        if (ZDiff <= 0.2f)
         {
             poszFlag = true;
             //Debug.Log("poszFlag:true");
@@ -135,7 +144,20 @@ public class VisitorCon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, angle + 90.0f, 0);
         
     }
-
+    void Wait()
+    {
+        if (waitCnt >= 1000)
+        {
+            Back();
+        }else if(waitCnt >= 900)
+        {
+            if (waitCnt % 2 == 0)
+            {
+                transform.Translate(vibration, 0, 0);
+                vibration = vibration * -1;
+            }
+        }
+    }
     void MoveBack()
     {
         if (!backFlag)
@@ -150,16 +172,17 @@ public class VisitorCon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 180.0f, 0);
         if (Mathf.Abs(transform.position.x) >= 20)
         {
-            transform.Translate(0, 0, 0.1f);
-        }else
+            transform.Translate(0, 0, 0.2f);
+        }
+        else
         {
             if(Destination== "Chair_1"|| Destination == "Chair_2")
             {
-                transform.Translate(0.1f, 0, 0);
+                transform.Translate(0.2f, 0, 0);
             }
             else
             {
-                transform.Translate(-0.1f, 0, 0);
+                transform.Translate(-0.2f, 0, 0);
             }
         }
     }
