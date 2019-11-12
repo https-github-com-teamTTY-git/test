@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class TitleName : MonoBehaviour
 {
-    
+    private float speed;
     void Start()
     {
-        
+        speed = 0.01f;
     }
 
-    void Update()
+    public void TitleNameMove()
     {
         if (this.GetComponent<Image>().fillAmount < 1)
         {
-            this.GetComponent<Image>().fillAmount += 0.01f;
+            this.GetComponent<Image>().fillAmount += speed;
         }
     }
 }

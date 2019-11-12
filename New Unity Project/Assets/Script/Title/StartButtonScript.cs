@@ -6,20 +6,20 @@ using UnityEngine.SceneManagement;
 public class StartButtonScript : MonoBehaviour
 {
     private bool isFadeOut = false;  // フェードアウト処理の開始、完了を管理するフラグ
-   
+    
     private FadeController fadeCtl;
-    // Start is called before the first frame update
+    private GameObject fade;
+
     void Start()
     {
-        GameObject obj = GameObject.Find("Fade");   // 指定の名前のオブジェクトを探す(処理重い※update書込禁止)
-        fadeCtl = obj.GetComponent<FadeController>();
+        fade = GameObject.FindGameObjectWithTag("FadeObj");   // 指定の名前のオブジェクトを探す(処理重い※update書込禁止)
+        fadeCtl = fade.GetComponent<FadeController>();
         fadeCtl.isendFadeFlg = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(isFadeOut)
+        if (isFadeOut)
         {
             // fadeOutのreturnでisendFadeFlgがtrueになったとき
             if (fadeCtl.StartFadeOut())

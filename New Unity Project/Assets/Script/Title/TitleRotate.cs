@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class TitleRotate : MonoBehaviour
 {
-    private Quaternion angle;
-    // Start is called before the first frame update
+    private float rotaSpeed;
+
     void Start()
     {
-        angle = this.transform.localRotation;
+        rotaSpeed = 0.5f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RotateLane()
     {
-        this.transform.Rotate(0, 0, 0.5f);
+        this.transform.Rotate(0, 0, rotaSpeed);
     }
 }
