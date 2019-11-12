@@ -32,7 +32,7 @@ public class SushiSpone : MonoBehaviour
             sushiCount.Add(0);
             sushiObjList.Add(obj);
         }
-        random = GameObject.FindGameObjectWithTag("Random").GetComponent<SushiRundom>();
+        random = /*GameObject.FindGameObjectWithTag("Random")*/this.GetComponent<SushiRundom>();
         randStart = false;
         nextObjNum = random.GetRandom(sushiObjList.Count);
         flamNum = 0f;

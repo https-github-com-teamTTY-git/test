@@ -12,6 +12,7 @@ TagManager:
   - Tamago
   - Ebi
   - Random
+  - Order
   layers:
   - Default
   - TransparentFX

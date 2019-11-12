@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class SushiOrder : MonoBehaviour
 {
+    private GameObject orderCanvas;
     private int orderObjNum;         //注文種別
     private bool orderFlag;          //注文フラグ
     private SushiRundom random;
+    private int childCnt;
 
     //寿司モデルのプレハブリスト
     private List<GameObject> sushiObjList;
@@ -22,9 +24,11 @@ public class SushiOrder : MonoBehaviour
         {
             sushiObjList.Add(obj);
         }
+        childCnt = 0;
         orderObjNum = 0;
         orderFlag = false;
         random = GameObject.FindGameObjectWithTag("Random").GetComponent<SushiRundom>();
+        orderCanvas = GameObject.FindGameObjectWithTag("Order");
     }
 
     private void Update()
@@ -42,15 +46,44 @@ public class SushiOrder : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Visitor")
+        {
+            childCnt = 0;
+            for (int j = 0; j < 5; j++)
+            {
+                if (transform.parent.gameObject.transform.GetChild(j).name == gameObject.name)
+                {
+                    break;
+                }
+                childCnt++;
+            }
+            //オーダーする
+            orderCanvas.transform.GetChild(childCnt).gameObject.SetActive(false);
+            orderCanvas.transform.GetChild(childCnt).transform.GetChild(orderObjNum).gameObject.SetActive(false);
+        }
+    }
+
     private void Order()
     {
         //注文する
         if (orderFlag)
         {
+            childCnt = 0;
             orderFlag = false;
+            for(int j = 0; j < 5; j++)
+            {
+                if (transform.parent.gameObject.transform.GetChild(j).name == gameObject.name)
+                {
+                    break;
+                }
+                childCnt++;
+            }
             //オーダーする
-            this.transform.GetChild(0).gameObject.SetActive(true);
-            this.transform.GetChild(0).transform.GetChild(orderObjNum).gameObject.SetActive(true);
+            orderCanvas.transform.GetChild(childCnt).gameObject.SetActive(true);
+            orderCanvas.transform.GetChild(childCnt).transform.GetChild(orderObjNum).gameObject.SetActive(true);
+            
         }
     }
 }
