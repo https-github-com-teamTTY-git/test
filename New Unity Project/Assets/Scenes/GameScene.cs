@@ -8,28 +8,25 @@ public class GameScene : MonoBehaviour
 {
     private Text finishText;
     private TimerMng timerMng;
-    // Start is called before the first frame update
+
     void Start()
     {
         finishText = GetComponent<Text>();
 
-        timerMng = GameObject.Find("TimerText").GetComponent<TimerMng>();
-
+        timerMng = GameObject.FindGameObjectWithTag("TimerText").GetComponent<TimerMng>();
 
         // 数字で経過時間を決める
         Invoke("ChangeScene", 130.0f);
-
     }
 
-    // Update is called once per frame
     void Update()
     {
+
         // タイムアップ後にfinish表示
         if (timerMng.TimerFlag == true)
         {
             finishText.text = "そこまで！！";
         }
-
     }
     void ChangeScene()
     {

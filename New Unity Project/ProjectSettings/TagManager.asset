@@ -13,6 +13,10 @@ TagManager:
   - Ebi
   - Random
   - Order
+  - SushiSet
+  - FadeObj
+  - SEMng
+  - TimerText
   layers:
   - Default
   - TransparentFX

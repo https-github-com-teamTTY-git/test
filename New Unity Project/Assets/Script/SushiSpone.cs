@@ -7,6 +7,9 @@ public class SushiSpone : MonoBehaviour
     private SushiRundom random;
     private bool randStart;         //乱数を取るかどうかのフラグ
     private int nextObjNum;         //次回の種別
+    private AudioSource seSound;
+    private TimerMng timerMng;
+
 
     //寿司モデルのプレハブリスト
     private List<GameObject> sushiObjList;
@@ -23,6 +26,7 @@ public class SushiSpone : MonoBehaviour
 
     private void Start()
     {
+        timerMng = GameObject.FindGameObjectWithTag("TimerText").GetComponent<TimerMng>();
         //Resourcesフォルダ内のprefabフォルダ内の全てのプレハブを取得
         sushiObj = Resources.LoadAll("prefab/neta/");
         sushiObjList = new List<GameObject>();
@@ -32,7 +36,8 @@ public class SushiSpone : MonoBehaviour
             sushiCount.Add(0);
             sushiObjList.Add(obj);
         }
-        random = /*GameObject.FindGameObjectWithTag("Random")*/this.GetComponent<SushiRundom>();
+        random = this.GetComponent<SushiRundom>();
+        seSound = this.GetComponent<AudioSource>();
         randStart = false;
         nextObjNum = random.GetRandom(sushiObjList.Count);
         flamNum = 0f;
@@ -41,6 +46,10 @@ public class SushiSpone : MonoBehaviour
 
     private void Update()
     {
+        if (timerMng.TimerFlag == true)
+        {
+            return;
+        }
         if (randStart)
         {
             //次出現させる寿司を決めておく
@@ -59,6 +68,7 @@ public class SushiSpone : MonoBehaviour
                 obj.name = sushiObj[nextObjNum].name;
                 sushiCount[nextObjNum]++;
                 randStart = true;
+                seSound.Play();
             }
             flamNum = 0;
         }

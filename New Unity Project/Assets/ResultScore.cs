@@ -8,18 +8,32 @@ public class ResultScore : MonoBehaviour
 {
     public Text textResultScore;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
         int score = ScoreMng.GetScore();
-        textResultScore.text = "Score:" + score + "えん";
-
+        if(score >= 1000)
+        {
+            textResultScore.text = "Score:" + score + "えん";
+        }
+        else if (score >= 100)
+        {
+            textResultScore.text = "Score:" + "   " + score + "えん";
+        }
+        else if (score >= 10)
+        {
+            textResultScore.text = "Score:" + "    " + score + "えん";
+        }
+        else if (score >= 0)
+        {
+            textResultScore.text = "Score:" + "    " + score + "えん";
+        }
+        else if (score >= -90)
+        {
+            textResultScore.text = "Score:" + "  " + score + "えん";
+        }
+        else
+        {
+            textResultScore.text = "Score:" + score + "えん";
+        }
     }
 }

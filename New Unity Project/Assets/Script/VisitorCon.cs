@@ -7,6 +7,7 @@ public class VisitorCon : MonoBehaviour
 
     private Chair chair;
     private Table table;
+    private TimerMng timerMng;
 
     private bool poszFlag;  // X側に動かなくなった時true
     private bool posxFlag;  // Z側に動かなくなった時true
@@ -15,26 +16,31 @@ public class VisitorCon : MonoBehaviour
 
     private string Destination;  // 行き先
 
-    private int waitCnt;         // 待ち時間
+    private float waitCnt;         // 待ち時間
     private float vibration;       // 振動
 
     private StartText startText;
-    // Start is called before the first frame update
+    private AudioSource[] seSounds;
+
     void Start()
     {
         startText = GameObject.Find("StartText").GetComponent<StartText>();
         gameObject.SetActive(true);
-
+        seSounds = GameObject.FindGameObjectWithTag("SEMng").GetComponents<AudioSource>();
         table = GameObject.Find("Table").GetComponent<Table>();
+        timerMng = GameObject.FindGameObjectWithTag("TimerText").GetComponent<TimerMng>();
 
         backFlag = false;
         waitCnt = 0;
         vibration = 0.5f;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (timerMng.TimerFlag == true)
+        {
+            return;
+        }
         if (!backFlag)
         {
             chair = GameObject.Find(Destination).GetComponent<Chair>();
@@ -51,13 +57,11 @@ public class VisitorCon : MonoBehaviour
                     MoveZ();
                 }
             }
-            //Debug.Log(gameObject.transform.position);
 
             // 到着したらposFlagをtrueにする
             if (poszFlag == true && posxFlag == true)
             {
                 Angle();
-                //Debug.Log("Flags true");
                 updateFlag = true;
             }
             Wait();
@@ -65,7 +69,7 @@ public class VisitorCon : MonoBehaviour
         }
         if (updateFlag)
         {
-            waitCnt++;
+            waitCnt += (Time.deltaTime * 60.0f);
         }
     }
     bool Enter()
@@ -85,14 +89,12 @@ public class VisitorCon : MonoBehaviour
             {
 
                 gameObject.transform.Translate(-0.2f, 0, 0);
-                //Debug.Log("-X:false");
                 posxFlag = false;
 
             }
             if (gameObject.transform.position.x > chair.gameObject.transform.position.x)
             {
                 gameObject.transform.Translate(0.2f, 0, 0);
-                //Debug.Log("+X:false");
                 posxFlag = false;
             }
         }
@@ -101,7 +103,6 @@ public class VisitorCon : MonoBehaviour
         if (XDiff <= 0.2f)
         {
             posxFlag = true;
-           // Debug.Log("posxFlag:true");
         }
 
     }
@@ -113,13 +114,11 @@ public class VisitorCon : MonoBehaviour
             if (gameObject.transform.position.z < chair.gameObject.transform.position.z)
             {
                 gameObject.transform.Translate(0, 0, -0.2f);
-              // Debug.Log("-Z:false");
                 poszFlag = false;
             }
             if (gameObject.transform.position.z > chair.gameObject.transform.position.z)
             {
                 gameObject.transform.Translate(0, 0, 0.2f);
-               // Debug.Log("+Z:false");
                 poszFlag = false;
             }
         }
@@ -127,7 +126,6 @@ public class VisitorCon : MonoBehaviour
         if (ZDiff <= 0.2f)
         {
             poszFlag = true;
-            //Debug.Log("poszFlag:true");
 
         }
     }
@@ -146,16 +144,25 @@ public class VisitorCon : MonoBehaviour
     }
     void Wait()
     {
-        if (waitCnt >= 1000)
+        if (!backFlag)
         {
-            Back();
-        }else if(waitCnt >= 900)
-        {
-            if (waitCnt % 2 == 0)
+            if (waitCnt >= 1000)
             {
-                transform.Translate(vibration, 0, 0);
-                vibration = vibration * -1;
+                Back();
             }
+            else if (waitCnt >= 900)
+            {
+                seSounds[1].Play();
+                if ((int)waitCnt % 2 == 0)
+                {
+                    transform.Translate(vibration, 0, 0);
+                    vibration = vibration * -1;
+                }
+            }
+        }
+        else
+        {
+            seSounds[1].Stop();
         }
     }
     void MoveBack()

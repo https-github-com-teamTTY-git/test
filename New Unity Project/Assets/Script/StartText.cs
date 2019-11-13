@@ -11,9 +11,10 @@ public class StartText : MonoBehaviour
     float currentTime;             // 残り時間タイマー
     public bool startFlag;
     private AudioSource seSound;
+    private bool onceFlag;
 
     private FadeIn fadeIn;
-    // Start is called before the first frame update
+
     void Start()
     {
         fadeIn = GameObject.Find("Panel").GetComponent<FadeIn>();
@@ -23,6 +24,7 @@ public class StartText : MonoBehaviour
         // 残り時間を設定
         currentTime = gameTime;
         seSound = this.GetComponent<AudioSource>();
+        onceFlag = true;
     }
 
     // Update is called once per frame
@@ -38,14 +40,18 @@ public class StartText : MonoBehaviour
         }
         int minutes = Mathf.FloorToInt(currentTime / 60F);
 
-        if ((fadeIn.isendFadeFlg == true)&& (7.0f <= currentTime))
+        if ((fadeIn.isendFadeFlg == true) && (6.0f <= currentTime))
         {
             timeText.text = "　よーい";
         }
-        else if ((5.0f <= currentTime) && (currentTime <= 7.5f))
+        else if ((5.0f <= currentTime) && (currentTime < 6.0f))
         {
             timeText.text = "スタート！！";
-            seSound.Play();
+            if (onceFlag)
+            {
+                seSound.Play();
+                onceFlag = false;
+            }
         }
         else
         {

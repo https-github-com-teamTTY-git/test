@@ -10,6 +10,7 @@ public class SushiOrder : MonoBehaviour
     private bool orderFlag;          //注文フラグ
     private SushiRundom random;
     private int childCnt;
+    private AudioSource seSound;
 
     //寿司モデルのプレハブリスト
     private List<GameObject> sushiObjList;
@@ -29,10 +30,7 @@ public class SushiOrder : MonoBehaviour
         orderFlag = false;
         random = GameObject.FindGameObjectWithTag("Random").GetComponent<SushiRundom>();
         orderCanvas = GameObject.FindGameObjectWithTag("Order");
-    }
-
-    private void Update()
-    {
+        seSound = this.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,9 +38,9 @@ public class SushiOrder : MonoBehaviour
         if(other.gameObject.tag == "Visitor")
         {
             orderFlag = true;
-            Invoke("Order", 2.0f);
             orderObjNum = random.GetRandom(sushiObjList.Count);
             other.transform.GetChild(2).gameObject.tag = sushiObjList[orderObjNum].name;
+            Order();
         }
     }
 
@@ -59,7 +57,7 @@ public class SushiOrder : MonoBehaviour
                 }
                 childCnt++;
             }
-            //オーダーする
+            //オーダーの表示を消す
             orderCanvas.transform.GetChild(childCnt).gameObject.SetActive(false);
             orderCanvas.transform.GetChild(childCnt).transform.GetChild(orderObjNum).gameObject.SetActive(false);
         }
@@ -83,7 +81,7 @@ public class SushiOrder : MonoBehaviour
             //オーダーする
             orderCanvas.transform.GetChild(childCnt).gameObject.SetActive(true);
             orderCanvas.transform.GetChild(childCnt).transform.GetChild(orderObjNum).gameObject.SetActive(true);
-            
+            seSound.Play();
         }
     }
 }

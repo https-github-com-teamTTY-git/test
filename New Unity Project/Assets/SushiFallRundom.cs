@@ -7,18 +7,11 @@ public class SushiFallRundom : MonoBehaviour
     private int newObjNum;          //現在の種別
     private int oldObjNum;          //前回の種別
 
-    // Start is called before the first frame update
     void Start()
     {
         newObjNum = 0;
         oldObjNum = 0;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     public int GetRandom(int range)
     {

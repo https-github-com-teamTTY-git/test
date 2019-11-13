@@ -16,7 +16,7 @@ public class VisitorSpone : MonoBehaviour
     // スポーン用変数
     [SerializeField]
     private int spTimeSecond = default;     //スポーンする間隔(秒)
-    private int flamNum;                    //フレーム数
+    private float flamNum;                    //フレーム数
     private int flamSecond = 60;            //1秒間のフレーム数
 
     // スポーン座標
@@ -44,8 +44,8 @@ public class VisitorSpone : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        flamNum++;
-        if(flamNum%(spTimeSecond*flamSecond)==0)
+        flamNum += Time.deltaTime;
+        if(spTimeSecond <= flamNum)
         {
             if (chair.CheckChair())
             {
@@ -55,6 +55,7 @@ public class VisitorSpone : MonoBehaviour
                 visitor.SetDestination(chair.vacancy());
                 totalCnt++;
             }
+            flamNum = 0;
         }
     }
 }

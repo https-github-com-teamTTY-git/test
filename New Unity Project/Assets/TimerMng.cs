@@ -10,6 +10,8 @@ public class TimerMng : MonoBehaviour
     Text timeText;                   // UIText コンポーネント
     float currentTime;             // 残り時間タイマー
     public bool TimerFlag;
+    private AudioSource[] seSounds;
+    private bool onceFlag;
 
     private StartText startText;
 
@@ -17,10 +19,12 @@ public class TimerMng : MonoBehaviour
     void Start()
     {
         startText = GameObject.Find("StartText").GetComponent<StartText>();
+        seSounds = GameObject.FindGameObjectWithTag("SEMng").GetComponents<AudioSource>();
         // Textコンポーネント取得
         timeText = GetComponent<Text>();
         // 残り時間を設定
         currentTime = gameTime;
+        onceFlag = true;
     }
 
     // Update is called once per frame
@@ -43,7 +47,12 @@ public class TimerMng : MonoBehaviour
 
             if (0.1f >= currentTime)
             {
-                TimerFlag = true;
+                if (onceFlag)
+                {
+                    TimerFlag = true;
+                    onceFlag = false;
+                }
+                seSounds[2].Play();
             }
         }
     }

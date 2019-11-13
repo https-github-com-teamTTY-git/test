@@ -7,20 +7,13 @@ public class SushiCollision : MonoBehaviour
     private VisitorCon audience;
 
     private ScoreMng score;
+    private AudioSource[] seSounds;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //GameObject Audience = GameObject.Find("Audience");
-        //audience = Audience.GetComponent<VisitorCon>();
         audience = transform.parent.GetComponent<VisitorCon>();
         score = GameObject.Find("ScoreMng").GetComponent<ScoreMng>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        seSounds = GameObject.FindGameObjectWithTag("SEMng").GetComponents<AudioSource>();
     }
 
     void OnTriggerStay(Collider collision)// triggerがあるときはこれ
@@ -31,6 +24,7 @@ public class SushiCollision : MonoBehaviour
         {
             if (myTag == collision.gameObject.tag)
             {
+                seSounds[0].Play();
                 score.AddScore();
                 Destroy(collision.gameObject);// 衝突した方(寿司)のオブジェクトを破壊
                 audience.Back();

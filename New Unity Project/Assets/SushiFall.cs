@@ -16,8 +16,7 @@ public class SushiFall : MonoBehaviour
     //スポーン用変数
     [SerializeField]
     private int spTimeSecond = default;         //スポーンする間隔（秒）
-    private int flamNum;                        //フレーム数
-    private int flamSecond = 60;                //1秒間のフレーム数
+    private float flamNum;                        //フレーム数
     [SerializeField]
     private int maxSponeCnt = default;
     //[SerializeField]
@@ -56,19 +55,20 @@ public class SushiFall : MonoBehaviour
             randStart = false;
         }
 
-        flamNum++;
+        flamNum += Time.deltaTime;
         //フレーム数が指定した間隔になればスポーンor注文させる
-        if (flamNum % (spTimeSecond * flamSecond) == 0)
+        if (flamNum >= spTimeSecond)
         {
             totalCnt++;
             if (totalCnt <= maxSponeCnt)
             {
                 //指定オブジェクトスポーン
                // this.transform.position = sponeSushiPos[Random.Range(0, 4)];
-                    GameObject obj = Instantiate<GameObject>(sushiFallObjList[nextObjNum],this.transform.position, Quaternion.Euler(vec3));
+                GameObject obj = Instantiate<GameObject>(sushiFallObjList[nextObjNum],this.transform.position, Quaternion.Euler(vec3));
                 sushiFallCount[nextObjNum]++;
                 randStart = true;
             }
+            flamNum = 0;
         }
 
         // [Debug] 各種類の合計数を表示する
